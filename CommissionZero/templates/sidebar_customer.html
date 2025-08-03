@@ -1,0 +1,90 @@
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Sidebar | CommissionZero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/customer/sidebar_customer.css' %}">
+</head>
+<body>
+
+<!-- Mobile Toggle -->
+<div class="mobile-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+</div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+    <div class="brand">
+        <div class="logo">CZ</div>
+        <div class="brand-name">CommissionZero</div>
+    </div>
+
+    <div class="user-profile">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+            <h4>{{ user.username }}</h4>
+            <p>Homeowner</p>
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        {% url 'customer_dashboard' as customer_dashboard %}
+        {% url 'tender_creation' as tender_creation %}
+        {% url 'my_tenders' as my_tenders %}
+        {% url 'messages_customer' as messages_customer %}
+        {% url 'find_professionals' as find_professionals %}
+        {% url 'reviews' as reviews %}
+
+        <a href="{{ customer_dashboard }}" class="menu-item {% if request.path == customer_dashboard or request.path == tender_creation %}active{% endif %}">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="{{ my_tenders }}" class="menu-item {% if request.path == my_tenders %}active{% endif %}">
+            <i class="fas fa-file-alt"></i>
+            <span>My Tenders</span>
+        </a>
+
+        <a href="{{ messages_customer }}" class="menu-item {% if request.path == messages_customer %}active{% endif %}">
+            <i class="fas fa-comments"></i>
+            <span>Messages</span>
+        </a>
+
+
+        <a href="{{ find_professionals }}" class="menu-item {% if request.path == find_professionals %}active{% endif %}">
+            <i class="fas fa-search"></i>
+            <span>Find Professionals</span>
+        </a>
+
+        <a href="{{ reviews }}" class="menu-item {% if request.path == reviews %}active{% endif %}">
+            <i class="fas fa-star"></i>
+            <span>Reviews</span>
+        </a>
+
+        <div class="divider"></div>
+
+        <a href="/settings" class="menu-item">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+        <a href="/help_center" class="menu-item">
+            <i class="fas fa-question-circle"></i>
+            <span>Help Center</span>
+        </a>
+        <a href="{% url 'logout' %}" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </nav>
+</aside>
+</body>
+</html>
+
+<script src="{% static 'js/sidebar_customer.js' %}"></script>
+
+{% endblock %}

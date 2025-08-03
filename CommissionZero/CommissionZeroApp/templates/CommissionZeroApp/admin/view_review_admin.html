@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Details | CommissionZero Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f6f9;
+    }
+    .card {
+      max-width: 600px;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .card h4 {
+      color: #0d6efd;
+      font-weight: bold;
+    }
+    .rating i {
+      color: #f6b01e;
+    }
+  </style>
+</head>
+<body>
+  {% include "sidebar_admin.html" %}
+
+  <div class="main-content">
+    <div class="card p-4">
+      <h4 class="mb-3">Review Details</h4>
+      <p><strong>Reviewer:</strong> {{ review.customer.get_full_name|default:review.customer.username }}</p>
+      <p><strong>Service Provider:</strong> {{ review.provider.profile.business_name|default:review.provider.username }}</p>
+      <p>
+        <strong>Rating:</strong>
+        <span class="rating">
+          {% for i in "12345" %}
+            {% if forloop.counter <= review.rating %}
+              <i class="fas fa-star"></i>
+            {% else %}
+              <i class="far fa-star"></i>
+            {% endif %}
+          {% endfor %}
+          <span class="ms-1">({{ review.rating }})</span>
+        </span>
+      </p>
+      <p><strong>Comment:</strong> {{ review.comment }}</p>
+      <p><strong>Date:</strong> {{ review.created_at|date:"F j, Y" }}</p>
+
+      <a href="{% url 'reviews_admin' %}" class="btn btn-secondary mt-3">
+        <i class="fas fa-arrow-left me-1"></i> Back to Reviews
+      </a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

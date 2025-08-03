@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommissionZero Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+</head>
+<body>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>CommissionZero</h3>
+                    <p>The commission-free marketplace connecting homeowners with local service professionals across five key domains: electricians, plumbers, painters, carpenters, and solar electricians.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1AG6VuUnMN/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/CommissionZeroo?t=ZxYnIaizCCfQHLVj88Q8ww&s=09" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/commissionzero/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>For Homeowners</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Find Professionals</a></li>
+                        <li><a href="#">Post a Tender</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>For Professionals</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Create Profile</a></li>
+                        <li><a href="#">Browse Tenders</a></li>
+                        <li><a href="#">Portfolio Tips</a></li>
+                        <li><a href="#">Pricing Strategies</a></li>
+                        <li><a href="#">Provider Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 CommissionZero. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

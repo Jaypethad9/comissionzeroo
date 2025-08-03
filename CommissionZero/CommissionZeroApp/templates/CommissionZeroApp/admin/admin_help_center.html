@@ -1,0 +1,77 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Help Center | CommissionZero Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/admin/sidebar_admin.css' %}">
+  <link rel="stylesheet" href="{% static 'css/admin/admin_help_center.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  {% include "sidebar_admin.html" %}
+
+  <div class="main-content">
+    <div class="admin-navbar">
+      <h2>Help Center</h2>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab('customer')">Customers</button>
+      <button class="tab-button" onclick="openTab('provider')">Service Providers</button>
+      <button class="tab-button" onclick="openTab('replied')">Replied</button>
+    </div>
+
+    <!-- Customer Queries -->
+    <div id="customer" class="tab-content active">
+      <h3>Customer Queries</h3>
+      <div class="query-card">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+        <p><strong>Query:</strong> I’m unable to post a tender. Can you help?</p>
+        <textarea placeholder="Type your reply..."></textarea>
+        <button class="btn reply-btn">Reply</button>
+      </div>
+    </div>
+
+    <!-- Provider Queries -->
+    <div id="provider" class="tab-content">
+      <h3>Service Provider Queries</h3>
+      <div class="query-card">
+        <p><strong>Name:</strong> Jane Smith</p>
+        <p><strong>Email:</strong> janeprovider@example.com</p>
+        <p><strong>Query:</strong> When will my account be approved?</p>
+        <textarea placeholder="Type your reply..."></textarea>
+        <button class="btn reply-btn">Reply</button>
+      </div>
+    </div>
+
+    <!-- Replied Queries -->
+    <div id="replied" class="tab-content">
+      <h3>Replied Queries</h3>
+      <div class="query-card replied">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+        <p><strong>Query:</strong> I’m unable to post a tender. Can you help?</p>
+        <div class="reply"><strong>Admin:</strong> We’ve fixed the issue. Please try again.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openTab(tabName) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+{% endblock %}

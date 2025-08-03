@@ -1,0 +1,242 @@
+{% extends "main.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - CommissionZero</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+  </head>
+  <body>
+    {% if form.errors %}
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+    <!-- Registration Section -->
+    <section class="register-section">
+      <div class="container">
+        <div class="register-header">
+          <h1>Create Your Account</h1>
+          <p>
+            Join CommissionZero to connect directly with local service
+            professionals or grow your business
+          </p>
+        </div>
+
+        <!-- Role Selection Tabs -->
+        <div class="role-tabs">
+          <a href="/register"
+            ><button class="tab-btn" data-tab="customer">
+              I'm a Customer
+            </button></a
+          >
+          <a href="/register-provider"
+            ><button class="tab-btn active" data-tab="provider">
+              I'm a Service Provider
+            </button></a
+          >
+        </div>
+
+        <!-- Registration Forms Container -->
+        <div class="register-forms">
+          <!-- Service Provider Registration Form -->
+          <form
+            action="{% url 'register_provider' %}" method="POST"
+            id="provider-form"
+            class="register-form active" >
+            {% csrf_token %}
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="provider-first-name">First Name</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="provider-first-name"
+                    placeholder="Enter your first name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="provider-last-name">Last Name</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="provider-last-name"
+                    placeholder="Enter your last name"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+                            <div class="form-group">
+  <label for="customer-username">Username</label>
+  <div class="input-with-icon">
+    <i class="fas fa-user"></i>
+    <input type="text" name="username" id="customer-username" placeholder="Choose a username" required />
+  </div>
+</div>
+
+            <div class="form-group">
+              <label for="provider-email">Email Address</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  name="email"
+                  id="provider-email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="provider-phone">Phone Number</label>
+              <div class="input-with-icon">
+                <i class="fas fa-phone"></i>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="provider-phone"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="provider-business-name"
+                >Business Name (Optional)</label
+              >
+              <div class="input-with-icon">
+                <i class="fas fa-briefcase"></i>
+                <input
+                  type="text"
+                  name="business_name"
+                  id="provider-business-name"
+                  placeholder="Enter your business name"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Service Categories</label>
+              <div class="service-categories">
+                <label class="category-tag">
+                  <input
+                    type="checkbox"
+                    name="categories"
+                    value="electrician"
+                  />
+                  Electrician
+                </label>
+                <label class="category-tag">
+                  <input type="checkbox" name="categories" value="plumber" />
+                  Plumber
+                </label>
+                <label class="category-tag">
+                  <input type="checkbox" name="categories" value="painter" />
+                  Painter
+                </label>
+                <label class="category-tag">
+                  <input type="checkbox" name="categories" value="carpenter" />
+                  Carpenter
+                </label>
+                <label class="category-tag">
+                  <input
+                    type="checkbox"
+                    name="categories"
+                    value="solar-electrician"
+                  />
+                  Solar Electrician
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="provider-location">Service Location</label>
+              <div class="input-with-icon">
+                <i class="fas fa-map-marker-alt"></i>
+                <input
+                  type="text"
+                  name="location"
+                  id="provider-location"
+                  placeholder="Enter your service area"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="provider-password">Password</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    name="password1"
+                    id="provider-password"
+                    placeholder="Create a password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="provider-confirm-password">Confirm Password</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    name="password2"
+                    id="provider-confirm-password"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="provider-terms" required />
+              <label for="provider-terms"
+                >I agree to the <a href="#">Terms of Service</a> and
+                <a href="#">Privacy Policy</a></label
+              >
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Create Provider Account
+            </button>
+
+            <p class="login-link">
+              Already have an account? <a href="/login">Log in here</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+{% include "footer.html" %} {% endblock %}

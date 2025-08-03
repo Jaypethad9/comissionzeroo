@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Responsive Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <nav class="navbar">
+        <div class="logo-container">
+            <div class="logo">C</div>
+            <h1 class="company-name">CommissionZero</h1>
+        </div>
+        
+        <label for="menu-toggle" class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+        
+        <ul class="nav-links">
+            <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="/service"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="/contact"><i class="fas fa-address-book"></i> Contact</a></li>
+            <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
+        </ul>
+        
+        <div class="auth-buttons">
+            <a href="/login" class="btn login-btn" style="background: rgba(255,255,255,0.2); border-color: white;">Login</a>
+            <a href="/register" class="btn signup-btn">Sign Up</a>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,228 @@
+{% extends "main.html" %} {% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommissionZero - Commission-Free Service Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find Trusted Local Service Professionals</h1>
+            <p>CommissionZero connects you directly with verified electricians, plumbers, painters, carpenters, and solar electricians with no middleman fees.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'register' %}" class="btn">Find a Pro</a>
+                <a href="{% url 'register' %}" class="btn btn-outline">Post a Job</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="text-center">How CommissionZero Works</h2>
+            <p class="text-center">Our commission-free platform makes it easy to connect with local professionals</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Browse or Post</h3>
+                    <p>Search for professionals by service type or post your job requirements as a tender.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Connect Directly</h3>
+                    <p>Chat or call professionals to discuss your project details and get quotes.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Hire & Work</h3>
+                    <p>Choose the best professional for your needs and schedule the work.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Rate & Review</h3>
+                    <p>After completion, leave feedback to help others find great professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="text-center">Our Service Categories</h2>
+            <p class="text-center">Find professionals across these key home service domains</p>
+            
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Electrician">
+                    </div>
+                    <div class="service-content">
+                        <h3>Electricians</h3>
+                        <p>From simple repairs to complete rewiring, find licensed electricians for all your electrical needs.</p>
+                        <a href="{% url 'register' %}" class="btn">Find Electricians</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Plumber">
+                    </div>
+                    <div class="service-content">
+                        <h3>Plumbers</h3>
+                        <p>Fix leaks, install fixtures, or handle complex plumbing projects with our verified professionals.</p>
+                        <a href="{% url 'register' %}" class="btn">Find Plumbers</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Painter">
+                    </div>
+                    <div class="service-content">
+                        <h3>Painters</h3>
+                        <p>Interior or exterior, residential or commercial - get perfect paint jobs every time.</p>
+                        <a href="{% url 'register' %}" class="btn">Find Painters</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="{% static 'image/carpainterimg.jpg' %}" alt="Carpenter">
+                    </div>
+                    <div class="service-content">
+                        <h3>Carpenters</h3>
+                        <p>Custom furniture, cabinetry, framing, and all woodworking needs handled by skilled carpenters.</p>
+                        <a href="{% url 'register' %}" class="btn">Find Carpenters</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Solar Electrician">
+                    </div>
+                    <div class="service-content">
+                        <h3>Solar Electricians</h3>
+                        <p>Expert installation and maintenance of solar panel systems for homes and businesses.</p>
+                        <a href="{% url 'register' %}" class="btn">Find Solar Experts</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Verified Professionals</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0%</div>
+                    <div class="stat-label">Commission Fees</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Completed Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8/5</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="text-center">What Our Users Say</h2>
+            <p class="text-center">Hear from homeowners and professionals who use CommissionZero</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "Found an excellent electrician through CommissionZero who fixed my wiring issues at half the price I was quoted elsewhere. The direct connection saved me money and the work was top quality."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah J.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "As a contractor, CommissionZero has helped me find quality clients without paying hefty platform fees. The tender system lets me bid on projects that match my skills and availability."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>Licensed Plumber</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "The portfolio feature has been great for showcasing my work to potential clients. I've doubled my business since joining CommissionZero while keeping all my earnings."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lisa M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Lisa M.</h4>
+                            <p>Painting Contractor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of homeowners and professionals who are connecting directly on CommissionZero</p>
+            <div class="hero-buttons">
+                <a href="{% url 'register' %}" class="btn">Find a Professional</a>
+                <a href="{% url 'register' %}" class="btn btn-outline">Sign Up as Provider</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+{%include "footer.html"%}
+{% endblock %}

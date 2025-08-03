@@ -1,0 +1,76 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Permissions | Admin | CommissionZero</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{% static 'css/admin/admin_permissions.css' %}" />
+</head>
+<body>
+
+{% include "sidebar_admin.html" %}
+
+<div class="main-content">
+  <div class="admin-navbar">
+    <h2>Permissions</h2>
+  </div>
+
+  <div class="permissions-section">
+    <div class="permissions-table-wrapper">
+      <table class="permissions-table">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Admin</th>
+            <th>Service Provider</th>
+            <th>Customer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Manage Tenders</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+          </tr>
+          <tr>
+            <td>View Quotes</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" /></td>
+          </tr>
+          <tr>
+            <td>Submit Reviews</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" checked /></td>
+          </tr>
+          <tr>
+            <td>Edit Platform Settings</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+          </tr>
+          <tr>
+            <td>Approve Providers</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" disabled /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn save">Save Changes</button>
+      <button class="btn reset">Reset</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings | CommissionZero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/service_provider/settings.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  {% include 'sidebar_service.html' %}
+
+  <div class="main-content">
+
+    <div class="container">
+      <form class="settings-form" method="POST">
+        {% csrf_token %}
+        <h3>Account Settings</h3>
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input type="text" id="full_name" name="full_name" value="{{ user.username }}" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" value="{{ user.email }}" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" value="{{ profile.phone }}" />
+        </div>
+      
+        <h3>Security</h3>
+        <div class="form-group">
+          <label for="current_password">Current Password</label>
+          <input type="password" id="current_password" name="current_password" />
+        </div>
+        <div class="form-group">
+          <label for="new_password">New Password</label>
+          <input type="password" id="new_password" name="new_password" />
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm New Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" />
+        </div>
+      
+        <div class="form-actions">
+          <button type="submit" class="btn">Save Changes</button>
+          <button type="reset" class="btn btn-outline">Cancel</button>
+        </div>
+      </form>
+      
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 CommissionZero. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

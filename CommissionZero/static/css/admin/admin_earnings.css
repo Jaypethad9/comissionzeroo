@@ -1,0 +1,128 @@
+:root {
+    --primary: #1e3c72;
+    --secondary: #2a5298;
+    --light: #f5f7fa;
+    --dark: #2d2d2d;
+    --success: #4caf50;
+    --warning: #ffc107;
+    --danger: #f44336;
+}
+
+
+/* Reset & Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--light);
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 30px 20px 60px;
+    width: 100%;
+}
+
+.admin-navbar {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+.admin-navbar h2 {
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.earnings-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.earnings-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.earnings-table th, .earnings-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+.earnings-table th {
+    background-color: var(--light);
+    color: var(--primary);
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status.paid {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.status.pending {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning);
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 6px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn.view {
+    background: var(--primary);
+    color: white;
+}
+
+.btn.delete {
+    background: var(--danger);
+    color: white;
+}
+
+.btn.view:hover {
+    background: #16325c;
+}
+
+.btn.delete:hover {
+    background: #d32f2f;
+}
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        padding: 80px 15px;
+    }
+
+    .earnings-table {
+        min-width: 600px;
+    }
+}

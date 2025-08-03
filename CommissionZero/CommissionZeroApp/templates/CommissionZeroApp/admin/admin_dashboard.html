@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard | CommissionZero{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin/admin_dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin/sidebar_admin.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<!-- Include Sidebar -->
+{% include "sidebar_admin.html" %}
+
+<!-- Mobile Toggle -->
+<div class="mobile-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Overview of platform activity</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <div class="stat-value">{{ total_users }}</div>
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+        </div>
+        <div class="stat-card">
+            <h3>Service Providers</h3>
+            <div class="stat-value">{{ total_providers }}</div>
+            <div class="stat-icon"><i class="fas fa-toolbox"></i></div>
+        </div>
+        <div class="stat-card">
+            <h3>Customers</h3>
+            <div class="stat-value">{{ total_customers }}</div>
+            <div class="stat-icon"><i class="fas fa-home"></i></div>
+        </div>
+        <div class="stat-card">
+            <h3>Active Tenders</h3>
+            <div class="stat-value">8</div>
+            <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Recent Activity</h2>
+    <div class="activity-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if recent_users %}
+                    {% for user in recent_users %}
+                        <tr>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {% if user.role == "Admin" %}
+                                    <span class="role admin">Admin</span>
+                                {% elif user.role == "Provider" %}
+                                    <span class="role provider">Provider</span>
+                                {% elif user.role == "Customer" %}
+                                    <span class="role customer">Customer</span>
+                                {% else %}
+                                    <span class="role unknown">Unknown</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ user.joined }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center fw-bold py-3">No recent users found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleSidebar() {
+        document.getElementById('adminSidebar').classList.toggle('active');
+    }
+</script>
+{% endblock %}

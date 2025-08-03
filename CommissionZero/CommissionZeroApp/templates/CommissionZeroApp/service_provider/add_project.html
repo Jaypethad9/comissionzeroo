@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Project</title>
+    <link rel="stylesheet" href="{% static 'css/service_provider/portfolio.css' %}">
+</head>
+<body>
+    {% include 'sidebar_service.html' %}
+    <div class="main-content">
+        <div class="container">
+            <h2>Add New Project</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Save Project</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

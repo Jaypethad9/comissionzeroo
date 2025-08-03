@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Service Provider Overview | Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <style>
+    body {
+      background-color: #f4f7fc;
+      overflow-x: hidden;
+    }
+
+    .dashboard-header {
+      padding: 30px 20px;
+      margin-left: 150px; /* to avoid sidebar overlap */
+    }
+
+    .card {
+      border: none;
+      border-radius: 12px;
+      color: white;
+    }
+
+    .card h5 {
+      font-weight: 600;
+    }
+
+    .card p {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .bg-tenders { background: #17a2b8; }
+    .bg-quotes { background: #ffc107; color: black; }
+    .bg-projects { background: #6f42c1; }
+    .bg-earnings { background: #28a745; }
+
+    .table thead {
+      background-color: #343a40;
+      color: white;
+    }
+
+    .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .table tbody tr:hover {
+      background-color: #e0e0e0;
+    }
+
+    @media screen and (max-width: 991px) {
+      .dashboard-header {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 240px;
+      z-index: 999;
+    }
+    .custom-dashboard-spacing {
+      margin-left: 220px; /* Match your sidebar width */
+      padding-right: 20px;
+      padding-left: 10px;
+    }
+    .portfolio-section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .portfolio-section h4 {
+      margin-bottom: 20px;
+    }
+    .portfolio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .portfolio-card {
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: calc(33.333% - 20px);
+      overflow: hidden;
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .portfolio-card h5 {
+      font-size: 1.1rem;
+      margin: 10px;
+    }
+    .portfolio-card p {
+      font-size: 0.9rem;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  {% include "sidebar_admin.html" %}
+  <div class="container dashboard-header">
+    <h2 class="mb-4">Admin View of <strong>{{ provider.user.get_full_name|default:provider.user.username }}</strong></h2>
+
+    <div class="row g-4 mb-5">
+      <div class="col-md-3">
+        <div class="card bg-tenders shadow p-3">
+          <h5><i class="fas fa-clipboard-list me-2"></i>Active Tenders</h5>
+          <p>{{ active_tenders }}</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-quotes shadow p-3">
+          <h5><i class="fas fa-file-invoice-dollar me-2"></i>Pending Quotes</h5>
+          <p>{{ pending_quotes }}</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-projects shadow p-3">
+          <h5><i class="fas fa-briefcase me-2"></i>Active Projects</h5>
+          <p>{{ active_projects }}</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-earnings shadow p-3">
+          <h5><i class="fas fa-rupee-sign me-2"></i>Monthly Earnings</h5>
+          <p>₹{{ monthly_earnings|floatformat:2 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-section">
+      <h4>Portfolio</h4>
+      {% if projects %}
+      <div class="portfolio-grid">
+        {% for project in projects %}
+        <div class="portfolio-card">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+          {% else %}
+            <img src="{% static 'images/default_project.jpg' %}" alt="Project Image">
+          {% endif %}
+          <h5>{{ project.title }}</h5>
+          <p>{{ project.description|truncatechars:100 }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted">No portfolio projects found.</p>
+      {% endif %}
+    </div>
+
+    <h4 class="mb-3">Recent Quotes</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Tender ID</th>
+            <th>Service</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for quote in recent_quotes %}
+          <tr>
+            <td>#TND-{{ quote.tender.id }}</td>
+            <td>{{ quote.tender.title }}</td>
+            <td>₹{{ quote.total_cost }}</td>
+            <td><span class="badge {% if quote.status == 'completed' %}bg-success{% elif quote.status == 'pending' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">{{ quote.status|capfirst }}</span></td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center text-muted">No quotes found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}
