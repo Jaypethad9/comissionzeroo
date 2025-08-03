@@ -1,0 +1,66 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Earnings | CommissionZero</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admin/admin_earnings.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+{% include "sidebar_admin.html" %}
+
+<div class="main-content">
+    <div class="admin-navbar">
+        <h2>Earnings Management</h2>
+    </div>
+
+    <div class="earnings-section">
+        <table class="earnings-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Provider</th>
+                    <th>Email</th>
+                    <th>Project</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for earning in earnings %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ earning.provider.get_full_name|default:earning.provider.username }}</td>
+                    <td>{{ earning.provider.email }}</td>
+                    <td>{{ earning.project_name }}</td>
+                    <td>₹{{ earning.amount }}</td>
+                    <td>
+                        <span class="status {{ earning.status|lower }}">{{ earning.status }}</span>
+                    </td>
+                    <td>{{ earning.date }}</td>
+                    <td>
+                        <a href="{% url 'admin_earnings_detail' earning.provider.id %}" class="btn view">View</a>
+                        <form method="POST" action="{% url 'delete_earning' earning.id %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this earning?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="8" style="text-align: center;">No earnings yet.</td></tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

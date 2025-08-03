@@ -1,0 +1,71 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Platform Settings | Admin | CommissionZero</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{% static 'css/admin/platform_settings.css' %}" />
+</head>
+<body>
+
+{% include "sidebar_admin.html" %}
+
+<div class="main-content">
+  <div class="admin-navbar">
+    <h2>Platform Settings</h2>
+  </div>
+
+  <div class="settings-section">
+    <form class="settings-form">
+      <div class="form-group">
+        <label for="site-status">Platform Status</label>
+        <select id="site-status">
+          <option value="active">Active</option>
+          <option value="maintenance">Maintenance</option>
+          <option value="offline">Offline</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="max-tenders">Max Tenders per Customer</label>
+        <input type="number" id="max-tenders" value="10" />
+      </div>
+
+      <div class="form-group">
+        <label for="approval-required">Service Provider Approval Required</label>
+        <select id="approval-required">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div class="form-group toggle-switch">
+        <label>Email Notifications</label>
+        <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="form-group toggle-switch">
+        <label>Enable Chat Feature</label>
+        <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn save">Save Changes</button>
+        <button type="reset" class="btn reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

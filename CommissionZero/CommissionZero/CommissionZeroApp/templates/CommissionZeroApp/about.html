@@ -1,0 +1,226 @@
+{% extends "main.html" %} {% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | CommissionZero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <style>
+        .feature-content {
+            display: block !important;
+        }
+
+        .features h3 {
+            margin-top: 50px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .feature-item i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Revolutionizing Local Services</h1>
+            <p>CommissionZero is transforming how homeowners connect with skilled professionals through our commission-free digital marketplace</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="container">
+            <h2 class="text-center">Our Mission</h2>
+            <p class="mission-statement">CommissionZero was founded to eliminate unnecessary middlemen in local service industries, creating direct connections between customers and verified professionals while maintaining quality, transparency, and trust.</p>
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Zero Commission</h3>
+                    <p>We don't take a cut from professionals' earnings, allowing them to offer competitive prices while earning more.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Verified Professionals</h3>
+                    <p>Every service provider undergoes verification to ensure quality and reliability for our customers.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Direct Communication</h3>
+                    <p>Customers and professionals communicate directly through our platform for clear project understanding.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Transparent Ratings</h3>
+                    <p>Honest feedback system helps maintain quality standards across all service categories.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="text-center">Platform Features</h2>
+            <p class="text-center">Discover how CommissionZero benefits both customers and service professionals</p>
+
+            <!-- For Customers -->
+            <div id="customer-features" class="feature-content active">
+                <h3 class="text-center">For Customers</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-search"></i> Professional Discovery</h4>
+                        <p>Browse verified professionals by skill, price, rating, or location with detailed profiles and portfolios.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-file-alt"></i> Tender System</h4>
+                        <p>Post your job requirements and receive private quotes from interested professionals.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-comment-dots"></i> Direct Communication</h4>
+                        <p>Chat or call professionals directly through our platform to discuss project details.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-line"></i> Transparent Pricing</h4>
+                        <p>Compare quotes from multiple professionals to find the best value for your project.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-star"></i> Rating System</h4>
+                        <p>Leave feedback after service completion to help others make informed decisions.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-bell"></i> Real-time Notifications</h4>
+                        <p>Get instant updates on quote submissions, messages, and appointment confirmations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Service Providers -->
+            <div id="provider-features" class="feature-content active">
+                <h3 class="text-center">For Service Providers</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-briefcase"></i> Profile Management</h4>
+                        <p>Create a professional profile showcasing your skills, experience, pricing, and location.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-clipboard-list"></i> Tender Access</h4>
+                        <p>Browse active job postings in your service area and specialty.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-file-invoice-dollar"></i> Quote Submission</h4>
+                        <p>Submit customized quotes with price breakdowns and material estimates.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-images"></i> Portfolio Showcase</h4>
+                        <p>Upload images of completed projects to demonstrate your work quality.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-comments"></i> Direct Client Communication</h4>
+                        <p>Message or call potential clients directly through the platform.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-pie"></i> Business Analytics</h4>
+                        <p>Track your quote acceptance rates and earnings over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <h2 class="text-center">Our Team</h2>
+            <p class="text-center">The people behind CommissionZero's vision</p>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe">
+                    </div>
+                    <div class="member-info">
+                        <h4>John Doe</h4>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith">
+                    </div>
+                    <div class="member-info">
+                        <h4>Jane Smith</h4>
+                        <p>CTO</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Brown">
+                    </div>
+                    <div class="member-info">
+                        <h4>Michael Brown</h4>
+                        <p>Head of Operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Experience Commission-Free Services?</h2>
+            <p>Join thousands of satisfied homeowners and professionals in our growing community</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn">Find a Professional</a>
+                <a href="#" class="btn btn-outline">Sign Up as Provider</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+{% include "footer.html" %}
+{% endblock %}

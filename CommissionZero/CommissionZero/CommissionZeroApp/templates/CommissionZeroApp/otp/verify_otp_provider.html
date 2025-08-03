@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+    <h2>Verify Provider OTP</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="otp">
+            Enter OTP sent to your email{% if request.session.pending_email %} ({{ request.session.pending_email }}){% endif %}:
+        </label>
+        <input type="text" name="otp" id="otp" required>
+        <button type="submit">Verify</button>
+    </form>
+    <p style="margin-top:16px;color:#888;">
+        <strong>Didn’t receive the email?</strong>
+        Please check your <b>Spam</b> or <b>Junk</b> folder. If you still don’t see it, try resending or contact support.
+    </p>
+</div>
+{% endblock %}

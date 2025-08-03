@@ -1,0 +1,57 @@
+{% extends "main.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | CommissionZero</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .waiting-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background: var(--light);
+      }
+
+      .waiting-box {
+        text-align: center;
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .waiting-box h2 {
+        font-size: 24px;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .waiting-box p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 30px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="waiting-container">
+      <div class="waiting-box">
+        <h2>Waiting for Approval</h2>
+        <p>
+          Your account is currently pending admin approval. You will be notified
+          once it’s approved.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

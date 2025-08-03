@@ -1,0 +1,121 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages | CommissionZero</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/customer/sidebar_customer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customer/messages.css' %}">
+</head>
+<body>
+
+    {% include "sidebar_customer.html" %}
+
+    <div class="main-content">
+        <div class="messages-container">
+
+            <!-- ✅ DYNAMIC USER LIST -->
+            <div class="chat-list">
+                <h2>Messages</h2>
+                {% for user in recent_users %}
+                <a href="{% url 'customer_chat' user.username %}" class="user-chat-preview">
+                    <div class="user-avatar">
+                        {{ user.get_full_name|default:user.username|slice:":2"|upper }}
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">{{ user.get_full_name|default:user.username }}</div>
+                        <div class="user-role">Service Provider</div>
+                    </div>
+                </a>
+
+                {% empty %}
+                    <p style="color:gray;">No conversations yet</p>
+                {% endfor %}
+            </div>
+
+            <!-- CHAT BOX -->
+            <div class="chat-box">
+                <div class="chat-header">
+                    <div class="chat-contact">
+                        <div class="avatar">{{ other_user.username|slice:":2"|upper }}</div>
+                        <div>
+                            <p class="name">{{ other_user.get_full_name }}</p>
+                            <p class="role">Service Provider</p>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+
+                <!-- MESSAGES -->
+                <div class="chat-body" id="chat-body">
+                    {% for msg in messages %}
+                        <div class="message {% if msg.sender == request.user %}sent{% else %}received{% endif %}">
+                            <p>{{ msg.content }}</p>
+                            <span class="msg-time">{{ msg.timestamp|date:"H:i" }}</span>
+                        </div>
+                    {% empty %}
+                        <p style="text-align:center; color:gray;">No messages yet.</p>
+                    {% endfor %}
+                </div>
+
+                <!-- MESSAGE INPUT -->
+                <div class="chat-input">
+                    <input type="text" id="chat-message-input" placeholder="Type your message...">
+                    <button id="chat-message-submit"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEBSOCKET SCRIPT -->
+<script>
+    const username = "{{ request.user.username }}";
+    const receiver = "{{ other_user.username }}";
+    const roomName = 'chat_' + [username, receiver].sort().join('_').toLowerCase();
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+    );
+
+    const input = document.getElementById('chat-message-input');
+    const chatBody = document.getElementById('chat-body');
+
+    function sendMessage() {
+        const message = input.value.trim();
+        if (message) {
+            chatSocket.send(JSON.stringify({ 'message': message }));
+            input.value = '';
+        }
+    }
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message');
+        msgDiv.classList.add(data.sender === username ? 'sent' : 'received');
+        msgDiv.innerHTML = `<p>${data.message}</p><span class="msg-time">now</span>`;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    };
+
+    document.getElementById('chat-message-submit').onclick = sendMessage;
+
+    // ✅ Send on Enter key press
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent newline
+            sendMessage();
+        }
+    });
+</script>
+
+
+    <script src="{% static 'js/sidebar_customer.js' %}"></script>
+</body>
+</html>
+{% endblock %}

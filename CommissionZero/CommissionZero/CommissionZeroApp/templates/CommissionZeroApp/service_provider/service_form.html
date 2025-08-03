@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ action }} Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            margin-left: 20%; /* Adjust if your sidebar width is different */
+            width: 100vh;
+            margin-right: 20%;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-wrapper h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-wrapper form p {
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-wrapper input[type="text"],
+        .form-wrapper textarea,
+        .form-wrapper select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% include "sidebar_service.html" %}
+
+    <div class="main-content">
+        <div class="container">
+            <div class="form-wrapper">
+                <h2>{{ action }} Service</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn">{{ action }} Service</button>
+                </form>
+                <a href="{% url 'service_cards' %}" class="back-link">← Back to Service Cards</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

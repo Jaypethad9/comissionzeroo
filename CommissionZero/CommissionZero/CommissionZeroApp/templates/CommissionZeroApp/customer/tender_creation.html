@@ -1,0 +1,141 @@
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Tender | CommissionZero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/customer/tender_creation.css' %}">
+</head>
+<body>
+    {% include "sidebar_customer.html" %}
+    <div class="container">
+        <div class="tender-creation">
+            <div class="page-header">
+                <h1>Create New Tender</h1>
+                <p>Fill in your project details to receive quotes from local professionals</p>
+            </div>
+            
+            <div class="tender-form-container">
+                <form method="POST" enctype="multipart/form-data" action="{% url 'tender_creation' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h2>Basic Information</h2>
+                        
+                        <div class="form-group">
+                            <label for="tender-title" class="required-field">Tender Title</label>
+                            <input type="text" id="tender-title" name="title" placeholder="e.g., Kitchen Plumbing Repair" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tender-description" class="required-field">Project Description</label>
+                            <textarea id="tender-description" name="description" placeholder="Describe your project in detail..." required></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Details Section -->
+                    <div class="form-section">
+                        <h2>Service Details</h2>
+                        
+                        <div class="form-group">
+                            <label class="required-field">Service Category</label>
+                            <div class="service-categories">
+                                <label class="category-tag">
+                                    <input type="radio" name="category" value="electrician" required> Electrician
+                                </label>
+                                <label class="category-tag">
+                                    <input type="radio" name="category" value="plumber"> Plumber
+                                </label>
+                                <label class="category-tag">
+                                    <input type="radio" name="category" value="painter"> Painter
+                                </label>
+                                <label class="category-tag">
+                                    <input type="radio" name="category" value="carpenter"> Carpenter
+                                </label>
+                                <label class="category-tag">
+                                    <input type="radio" name="category" value="solar"> Solar Electrician
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tender-budget">Estimated Budget (Optional)</label>
+                                <input type="number" id="tender-budget" name="budget" placeholder="$">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tender-urgency" class="required-field">Urgency</label>
+                                <select id="tender-urgency" name="urgency" required>
+                                    <option value="" disabled selected>Select urgency</option>
+                                    <option value="urgent">Urgent (Within 24 hours)</option>
+                                    <option value="soon">Soon (Within a week)</option>
+                                    <option value="flexible">Flexible (No specific deadline)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Location & Timing Section -->
+                    <div class="form-section">
+                        <h2>Location & Timing</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tender-address" class="required-field">Address</label>
+                                <input type="text" id="tender-address" name="address" placeholder="Enter project address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tender-postcode" class="required-field">Postcode</label>
+                                <input type="text" id="tender-postcode" name="postcode" placeholder="Enter postcode" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tender-start-date">Preferred Start Date</label>
+                                <input type="date" id="tender-start-date" name="start_date">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tender-deadline" class="required-field">Quote Deadline</label>
+                                <input type="date" id="tender-deadline" name="deadline" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <h2>Additional Information</h2>
+                        
+                        <div class="form-group">
+                            <label for="tender-notes">Special Notes</label>
+                            <textarea id="tender-notes" name="notes" placeholder="Any special requirements or notes for professionals..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tender-images">Upload Images (Optional)</label>
+                            <input type="file" id="tender-images" name="images" multiple>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Tender</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}
+

@@ -1,0 +1,77 @@
+{% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customers | Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/admin/customers_admin.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    {% include "sidebar_admin.html" %}
+
+    <div class="main-content">
+      <div class="admin-navbar">
+        <h2>Customer Management</h2>
+        <p>Manage all registered customers on the platform</p>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+      </div>
+
+      <div class="users-section">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Joined</th>
+              <th>Status</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if customers %} {% for customer in customers %}
+            <tr>
+              <td>
+                {{ customer.user.get_full_name|default:customer.user.username }}
+              </td>
+              <td>{{ customer.user.email }}</td>
+              <td>{{ customer.user.date_joined|date:"Y-m-d" }}</td>
+              <td><span class="status active">Active</span></td>
+              <td><span class="badge customer">Customer</span></td>
+              <td>
+                <a href="{% url 'view_customer_detail' customer.user.id %}" class="btn view">View</a>
+                <a
+                  href="{% url 'delete_customer' customer.user.id %}"
+                  class="btn delete"
+                  onclick="return confirm('Are you sure you want to delete this customer?')"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+              <td colspan="6" style="text-align: center">
+                No customers found.
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

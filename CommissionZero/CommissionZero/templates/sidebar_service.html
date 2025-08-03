@@ -1,0 +1,118 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Provider Sidebar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/service_provider/sidebar_service.css' %}">
+</head>
+<body>
+
+<!-- Mobile Menu Toggle Button -->
+<button class="mobile-menu-toggle" id="menuToggle">
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<aside class="provider-sidebar" id="sidebar">
+
+  <!-- Profile Section -->
+  <div class="provider-profile">
+    <div class="provider-avatar">EP</div>
+    <div class="provider-info">
+      <h3>{{ user.username }}</h3>
+      <p>Contractor</p>
+      <div class="provider-rating">
+        {% if avg_rating %}
+          {% for i in "12345" %}
+            {% if forloop.counter <= avg_rating %}
+              <i class="fas fa-star"></i>
+            {% elif forloop.counter0 < avg_rating and avg_rating < forloop.counter %}
+              <i class="fas fa-star-half-alt"></i>
+            {% else %}
+              <i class="far fa-star"></i>
+            {% endif %}
+          {% endfor %}
+          <span>({{ avg_rating }})</span>
+        {% else %}
+          <span>No ratings yet</span>
+        {% endif %}
+      </div>
+      
+      
+    </div>
+  </div>
+
+  <!-- Load All URLs -->
+  {% url 'service_dashboard' as service_dashboard %}
+  {% url 'tenders' as tenders %}
+  {% url 'quotes' as quotes %}
+  {% url 'earnings' as earnings %}
+  {% url 'service_cards' as service_cards %}
+  {% url 'portfolio' as portfolio %}
+  {% url 'reviews_service' as reviews_service %}
+  {% url 'messages_service' as messages_service %}
+  {% url 'profile' as profile %}
+  {% url 'settings_service' as settings_service %}
+
+  <!-- Menu -->
+  <nav class="provider-menu">
+
+    <div class="menu-category">Dashboard</div>
+    <a href="{{ service_dashboard }}" class="menu-item {% if request.path == service_dashboard %}active{% endif %}">
+      <i class="fas fa-tachometer-alt"></i><span>Overview</span>
+    </a>
+
+    <div class="menu-category">Business</div>
+    <a href="{{ tenders }}" class="menu-item {% if request.path == tenders %}active{% endif %}">
+      <i class="fas fa-clipboard-list"></i><span>Tenders</span>
+    </a>
+    <a href="{{ quotes }}" class="menu-item {% if request.path == quotes %}active{% endif %}">
+      <i class="fas fa-file-invoice-dollar"></i><span>Quotes</span>
+    </a>
+    <a href="{{ earnings }}" class="menu-item {% if request.path == earnings %}active{% endif %}">
+      <i class="fas fa-chart-line"></i><span>Earnings</span>
+    </a>
+
+    <div class="menu-category">Profile</div>
+    <a href="{{ service_cards }}" class="menu-item {% if request.path == service_cards %}active{% endif %}">
+      <i class="fas fa-id-card"></i><span>Service Cards</span>
+    </a>
+    <a href="{{ portfolio }}" class="menu-item {% if request.path == portfolio %}active{% endif %}">
+      <i class="fas fa-images"></i><span>Portfolio</span>
+    </a>
+    <a href="{{ reviews_service }}" class="menu-item {% if request.path == reviews_service %}active{% endif %}">
+      <i class="fas fa-star"></i><span>Reviews</span>
+    </a>
+
+    <div class="menu-category">Communication</div>
+    <a href="{{ messages_service }}" class="menu-item {% if request.path == messages_service %}active{% endif %}">
+      <i class="fas fa-comments"></i><span>Messages</span>
+    </a>
+
+    <div class="menu-category">Settings</div>
+    <a href="{{ profile }}" class="menu-item {% if request.path == profile %}active{% endif %}">
+      <i class="fas fa-user-cog"></i><span>Profile</span>
+    </a>
+    <a href="{{ settings_service }}" class="menu-item {% if request.path == settings_service %}active{% endif %}">
+      <i class="fas fa-cog"></i><span>Settings</span>
+    </a>
+    <a href="{% url 'logout' %}" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+  </nav>
+</aside>
+
+<script>
+  // Mobile menu toggle
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('active');
+  });
+</script>
+</body>
+</html>
+{% endblock %}

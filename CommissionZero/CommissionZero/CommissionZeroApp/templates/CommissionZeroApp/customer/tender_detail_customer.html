@@ -1,0 +1,75 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tender Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/customer/tender_detail.css' %}" />
+  </head>
+  <body>
+    {% include "sidebar_customer.html" %}
+
+    <div class="container">
+      <h1 class="page-title">Tender Details</h1>
+
+      <div class="tender-detail-card">
+        <h2>{{ tender.title }}</h2>
+
+        <div class="meta">
+          <div><strong>Category:</strong> {{ tender.get_category_display }}</div>
+          <div><strong>Urgency:</strong> {{ tender.get_urgency_display }}</div>
+          <div><strong>Status:</strong> 
+            <span class="status {{ tender.status }}">{{ tender.status|capfirst }}</span>
+          </div>
+        </div>
+
+        <div class="meta">
+          <div><strong>Budget:</strong> 
+            {% if tender.budget %}
+              ₹{{ tender.budget|intcomma }}
+            {% else %}
+              Not specified
+            {% endif %}
+          </div>
+          <div><strong>Deadline:</strong> {{ tender.deadline|date:"F j, Y" }}</div>
+          <div><strong>Start Date:</strong> {{ tender.start_date|default:"Not specified" }}</div>
+        </div>
+
+        <div class="meta">
+          <div><strong>Address:</strong> {{ tender.address }}, {{ tender.postcode }}</div>
+        </div>
+
+        <hr>
+
+        <div class="description">
+          <h3>Description</h3>
+          <p>{{ tender.description }}</p>
+        </div>
+
+        {% if tender.notes %}
+        <div class="notes">
+          <h3>Special Notes</h3>
+          <p>{{ tender.notes }}</p>
+        </div>
+        {% endif %}
+
+        {% if tender.images %}
+        <div class="image-section">
+          <h3>Uploaded Image</h3>
+          <img src="{{ tender.images.url }}" alt="Tender Image">
+        </div>
+        {% endif %}
+
+        <div class="actions">
+          <a href="{% url 'my_tenders' %}" class="btn-back">← Back to My Tenders</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+:root {
+  --primary: #1e3c72;
+  --secondary: #2a5298;
+  --light: #f5f7fa;
+  --dark: #2d2d2d;
+  --success: #4caf50;
+  --warning: #ffc107;
+  --danger: #f44336;
+}
+
+/* Reset & Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: var(--light);
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 30px 20px;
+  width: 100%;
+}
+
+.admin-navbar {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+  border-radius: 8px;
+}
+
+.admin-navbar h2 {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.permissions-section {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.permissions-table-wrapper {
+  overflow-x: auto;
+}
+
+.permissions-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.permissions-table th,
+.permissions-table td {
+  text-align: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.permissions-table th {
+  background-color: var(--light);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.permissions-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.form-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn.save {
+  background: var(--primary);
+  color: white;
+}
+
+.btn.save:hover {
+  background: #16325c;
+}
+
+.btn.reset {
+  background: #ddd;
+  color: var(--dark);
+}
+
+.btn.reset:hover {
+  background: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding: 80px 15px;
+  }
+
+  .permissions-table td,
+  .permissions-table th {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}

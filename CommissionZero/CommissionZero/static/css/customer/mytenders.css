@@ -1,0 +1,147 @@
+:root {
+  --primary: #1e3c72;
+  --secondary: #2a5298;
+  --accent: #ff9a9e;
+  --light: #f5f7fa;
+  --dark: #333;
+  --success: #4caf50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  color: var(--dark);
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--primary);
+}
+
+.tenders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.tender-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.tender-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.tender-title {
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.tender-detail {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status.open {
+  background: #d4f5e9;
+  color: #2e7d32;
+}
+
+.status.closed {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.action-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+  background: linear-gradient(45deg, var(--secondary), var(--primary));
+}
+
+@media (max-width: 576px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.create-btn {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-btn:hover {
+  background: linear-gradient(45deg, var(--secondary), var(--primary));
+  text-decoration: none;
+}
+
+/* Wrapper to hold sidebar and content side-by-side */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+/* Sidebar width fix (you can tweak based on your layout) */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+/* Main content should not be hidden */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+}

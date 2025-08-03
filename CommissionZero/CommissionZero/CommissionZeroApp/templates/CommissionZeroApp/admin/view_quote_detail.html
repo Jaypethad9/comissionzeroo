@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote Details</title>
+
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+
+    {# keep this only if you still need extra tweaks in quotes_admin.css #}
+    {# <link rel="stylesheet" href="{% static 'css/admin/quotes_admin.css' %}"> #}
+
+    <style>
+        body        { background: #f8f9fa; }
+        .form-section{ max-width: 600px; margin: 50px auto; }
+        .card        { box-shadow: 0 0 10px rgba(0,0,0,.1); }
+    </style>
+</head>
+<body>
+    {% include "sidebar_admin.html" %}
+
+    <!-- content container -->
+    <div class="container form-section">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Quote Details – #Q{{ quotation.id }}
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered mb-4">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Service Provider</th>
+                            <td>{{ quotation.provider.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tender Title</th>
+                            <td>{{ quotation.tender.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Labor Cost</th>
+                            <td>₹{{ quotation.labor_cost }}</td>
+                        </tr>
+                        <tr>
+                            <th>Material Cost</th>
+                            <td>₹{{ quotation.material_cost }}</td>
+                        </tr>
+                        <tr>
+                            <th>Miscellaneous Cost</th>
+                            <td>₹{{ quotation.misc_cost }}</td>
+                        </tr>
+                        <tr>
+                            <th>GST Amount</th>
+                            <td>₹{{ quotation.gst_amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>Convenience Fee</th>
+                            <td>₹{{ quotation.convenience_fee }}</td>
+                        </tr>
+                        <tr class="table-primary fw-bold">
+                            <th>Total Cost</th>
+                            <td>₹{{ quotation.total_cost }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ quotation.status|capfirst }}</td>
+                        </tr>
+                        <tr>
+                            <th>Submitted On</th>
+                            <td>{{ quotation.created_at|date:"Y-m-d H:i" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{% url 'quotes_admin' %}" class="btn btn-success w-100">
+                    Back to Quotes
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
